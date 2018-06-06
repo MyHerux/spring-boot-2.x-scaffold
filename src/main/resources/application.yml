@@ -8,3 +8,8 @@ management:
 
 swagger:
   show: true
+
+spring:
+  devtools:
+    livereload:
+      enabled: true
