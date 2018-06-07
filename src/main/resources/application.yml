@@ -1,15 +1,28 @@
 server:
   port: 8077
 
-management:
-  endpoints:
-    web:
-      expose: "*"
-
-swagger:
-  show: true
-
 spring:
   devtools:
     livereload:
       enabled: true
+
+  redis:
+    port: 6379
+    host: localhost
+    password:
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,env,metrics,prometheus
+
+swagger:
+  show: true
+
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306
+#    username: root
+#    password:
+#    maximum-pool-size: 50
