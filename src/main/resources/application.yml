@@ -5,13 +5,21 @@ spring:
   devtools:
     livereload:
       enabled: true
-
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306?useSSL=false
+    username: root
+    password: 1234
+    maximum-pool-size: 50
   redis:
     port: 6379
     host: localhost
     password:
 
 management:
+  endpoint:
+    prometheus:
+          enabled: true
   endpoints:
     web:
       exposure:
@@ -20,9 +28,3 @@ management:
 swagger:
   show: true
 
-#  datasource:
-#    driver-class-name: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306
-#    username: root
-#    password:
-#    maximum-pool-size: 50
