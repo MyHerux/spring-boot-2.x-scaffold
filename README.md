@@ -1,14 +1,8 @@
-# spring-boot-2.x-scaffold
+# Springboot-2.x
 
-Spring-boot-2.x 脚手架，组件包括：
+## Overview
 
-- Actuator
-
-- Swagger
-
-- 统一的异常处理
-
-- HikariCP
+- 
 
 ## 基本概念
 
@@ -252,7 +246,7 @@ Spring-boot-2.x 脚手架，组件包括：
 
 - 监控详情
 
-    [SpringBoot 2.x 中使用 Actuator 来做应用监控]()
+    [SpringBoot 2.x 中使用 Actuator 来做应用监控](https://blog.csdn.net/myherux/article/details/80670557)
 
 ## 配置 Swagger
 
@@ -346,7 +340,10 @@ Spring-boot-2.x 脚手架，组件包括：
     因为已经默认使用 `HikariCP`，所以只需要在 yaml 中添加数据库配置即可：
 
     ```
-
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://
+    username:
+    password:
     ```
 
     [HikariCP配置详解]()
@@ -356,8 +353,116 @@ Spring-boot-2.x 脚手架，组件包括：
 
     []()
 
+## Redis
 
+SpringBoot 2.0 中 `Redis` 客户端驱动现在由 `Jedis` 变为了 `Lettuce` 。
 
+- 基本配置
+
+    直接使用 `spring-boot-starter-data-redis` 即可，默认会使用 `Lettuce` 。
+
+    ```
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-redis</artifactId>
+    </dependency>
+    ```
+
+    ```
+    spring:
+      redis:
+        port: 6379
+        host: localhost
+        password:
+    ```
+
+- StringRedisTemplate
+
+    ```
+    @Autowired
+    private StringRedisTemplate template;
+
+    @ApiOperation(value = "测试Redis")
+    @GetMapping("/test5")
+    public String test5() {
+        template.opsForValue().set("aaa", "111");
+
+        return template.opsForValue().get("aaa");
+    }
+    ```
+
+## MongoDB
+
+- 基本配置
+
+    ```
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-mongodb</artifactId>
+    </dependency>
+    ```
+
+    ```
+    spring:
+      data:
+        mongodb:
+        uri: mongodb://localhost/test
+        username: test
+        password: 123456
+    ```
+- MongoTemplate
+
+    同 SpringBoot 1.0 ，依然提供 `MongoTemplate`（Spring Boot为你自动配置一个bean来注入模板） 的方式：
+
+    ```
+    @Data
+    @Builder
+    public class User {
+
+        @Id
+        public String id;
+
+        public String name;
+
+        public String password;
+    }
+    ```
+
+    ```
+    @Autowired
+    private MongoTemplate mongoTemplate;
+
+    @ApiOperation(value = "测试 MongoTemplate")
+    @GetMapping("/test7")
+    public List<User> test7() {
+        User user = User.builder().name("test").password("123").build();
+        mongoTemplate.save(user);
+        return mongoTemplate.findAll(User.class);
+    }
+    ```
+
+- Spring Data MongoDB Repositories
+
+    `Spring Data` 包含对 MongoDB 的存储库支持。与JPA存储库一样，基本原则是所有查询都是基于方法名称自动构建的。
+
+    ```
+    public interface UserRepository extends MongoRepository<User, String> {
+    }
+    ```
+
+    ```
+    @Autowired
+    private UserRepository userRepository;
+
+    @ApiOperation(value = "测试 MongoDB Repositories")
+    @GetMapping("/test6")
+    public List<User> test6() {
+        User user = User.builder().name("test").password("123").build();
+        userRepository.save(user);
+
+        return userRepository.findAll();
+    }
+    ```
 
 
 
