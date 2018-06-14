@@ -39,7 +39,7 @@
 
     - 能够识别 `application.properties` 和 `application.yml` 类型的文件，同时也能支持`profile-specific` 类型的文件（如： `application-foo.properties` and   `application-foo.yml`)。
 
-    - 把 `application.properties` 和 `application.yml` 默认的占位符 `${…​}` 改为了`@..@`
+    - 把 `application.properties` 和 `application.yml` 默认的占位符 `${…}` 改为了`@..@`
 
 - @Configuration
 
@@ -61,7 +61,7 @@
 
 - 导入 XML 配置
 
-    如果不得不使用 `XML` 来导入配置，建议使用 `@ImportResource` 和 `@Value` 进行资源文件读取。
+    如果不得不使用 `XML` 来导入配置，建议使用 `@ImportResource` 和 `@Value` 进行资源文件读取。
 
     ```
     @Configuration
@@ -82,15 +82,15 @@
 
 - 自动配置(Auto-configuration)
 
-    `Spring Boot auto-configuration` 将基于你的jar包依赖自动配置你的 `Spring application`。比如：如果在你的classpath中配置了H2（在pom.xml文件中添加了H2的依赖），你不必维护任何数据连接，Spring Boot会自动配置一个内存数据库。
+    `Spring Boot auto-configuration` 将基于你的jar包依赖自动配置你的 `Spring application`。比如：如果在你的classpath中配置了H2（在pom.xml文件中添加了H2的依赖），你不必维护任何数据连接，Spring Boot会自动配置一个内存数据库。
 
     通过在 `@Configuration` classes 上使用 `@SpringBootApplication` or `@EnableAutoConfiguration` 注解来选择是否开启自动配置。
 
 - Spring Beans and Dependency Injection
 
-    > 在 `Springboot` 可以使用任何在 `Spring` 中使用的方式来定义 bean。 为了简便，我们经常使用 `@ComponentScan` (to find your beans) and `@autowired` (to do constructor injection) 。
+    > 在 `Springboot` 可以使用任何在 `Spring` 中使用的方式来定义 bean。 为了简便，我们经常使用 `@ComponentScan` (to find your beans) and `@autowired` (to do constructor injection) 。
     
-    如果 `SpringApplication` 是放在根目录下，则可以使用 `@ComponentScan` 而不带任何参数。所有的应用程序组件（`@Component`，`@Service`，`@Repository`，`@Controller`等）都会自动注册为 `Spring Bean`。
+    如果 `SpringApplication` 是放在根目录下，则可以使用 `@ComponentScan` 而不带任何参数。所有的应用程序组件（`@Component`，`@Service`，`@Repository`，`@Controller`等）都会自动注册为 `Spring Bean`。
 
     使用构造函数来注入 `RiskAssessor` bean（如果bean有一个构造函数，可以省略 `@Autowired`）:
 
@@ -117,7 +117,7 @@
 
 - Hot Swapping
 
-    `SpringBoot` 提供 `spring-boot-devtools` 工具来实现热部署。
+    `SpringBoot` 提供 `spring-boot-devtools` 工具来实现热部署。
 
     `spring-boot-devtools` 模块可以包含在任何项目中，它可以节省大量的时间。 想要使用devtools支持，只需将模块依赖关系添加到你的构建中：
 
@@ -160,7 +160,7 @@
                 +- OrderRepository.java
     ```
 
-    `Application.java` 文件使用基本的注解 `@SpringBootApplication` 描述 `main` method，如下：
+    `Application.java` 文件使用基本的注解 `@SpringBootApplication` 描述 `main` method，如下：
 
     ```java
     package com.example.myapplication;
@@ -218,7 +218,7 @@
 
     如果要修改其内容，只需要在 `Spring Boot` 工程的 `/src/main/resources` 目录下创建一个 `banner.txt` 文件，然后将ASCII字符画复制进去，就能替换默认的 `banner` 了。
 
-    也可以在程序中修改，使用 `SpringApplication.setBanner(…​)` 方法或者使用 `org.springframework.boot.Banner` 接口并实现你自己的 `printBanner()` 方法.
+    也可以在程序中修改，使用 `SpringApplication.setBanner(…)` 方法或者使用 `org.springframework.boot.Banner` 接口并实现你自己的 `printBanner()` 方法.
 
 - Customizing SpringApplication
 
@@ -236,7 +236,7 @@
 
     > 传递给 `SpringApplication` 的构造函数参数是 `Spring bean` 的配置源。在大多数情况下，它们都是对              `@Configuration` 类的引用，但它们也可能是对XML配置或应扫描的包的引用。
 
-## 开启 Actuator
+## 开启 Actuator
 
 [Spring-boot-actuator](https://github.com/spring-projects/spring-boot/tree/v2.0.2.RELEASE/spring-boot-project/spring-boot-actuator) module 可帮助您在将应用程序投入生产时监视和管理应用程序。您可以选择使用 HTTP 端点或 JMX 来管理和监控您的应用程序。Auditing, health, and metrics gathering 也可以自动应用于您的应用程序。
 
@@ -250,11 +250,11 @@
     </dependency>
     ```
 
-- 监控详情
+- 监控详情
 
     [SpringBoot 2.x 中使用 Actuator 来做应用监控](https://blog.csdn.net/myherux/article/details/80670557)
 
-## 配置 Swagger
+## 配置 Swagger
 
 - 引入依赖
 
@@ -343,7 +343,7 @@
 
 - 基本配置
 
-    因为已经默认使用 `HikariCP`，所以只需要在 yaml 中添加数据库配置即可：
+    因为已经默认使用 `HikariCP`，所以只需要在 yaml 中添加数据库配置即可：
 
     ```
     driver-class-name: com.mysql.jdbc.Driver
