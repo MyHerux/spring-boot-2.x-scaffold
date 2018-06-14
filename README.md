@@ -2,7 +2,13 @@
 
 ## Overview
 
-- 
+- SpringBoot 2.x
+- 应用监控：Actuator
+- Swagger 2.8
+- 统一异常处理
+- 数据库连接池：HikariCP
+- Redis
+- MongoDB
 
 ## 基本概念
 
