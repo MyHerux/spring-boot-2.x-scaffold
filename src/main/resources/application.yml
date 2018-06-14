@@ -15,6 +15,11 @@ spring:
     port: 6379
     host: localhost
     password:
+  data:
+    mongodb:
+      uri: mongodb://localhost/test
+      username: test
+      password: 123456
 
 management:
   endpoint:

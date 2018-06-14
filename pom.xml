@@ -25,20 +25,29 @@
     </properties>
 
     <dependencies>
+
+        <!-- core -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
+        <!-- Actuator -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+        <!--Prometheus-->
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-prometheus</artifactId>
         </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>io.micrometer</groupId>-->
+            <!--<artifactId>micrometer-registry-influx</artifactId>-->
+        <!--</dependency>-->
 
         <!--SpringBoot web-->
         <dependency>
@@ -72,6 +81,12 @@
             <version>1.2.29</version>
         </dependency>
 
+        <!-- lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
         <!-- devtools -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -102,6 +117,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!-- MongoDB -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
 
     </dependencies>
