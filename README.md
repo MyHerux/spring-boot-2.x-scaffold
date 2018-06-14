@@ -333,11 +333,11 @@
 
     - `businessExceptionHandler` 处理主动抛出的异常，按照等级不同进行不同处理。
 
-    - `otherExceptionHandler` 处理未捕获的异常，需要通知。
+    - `otherExceptionHandler` 处理未捕获的异常，需要通知。
 
 ## 数据库连接池-HikariCP
 
-`SpringBoot 2.0` 开始推 `HikariCP` ，将默认的数据库连接池从 `tomcat jdbc pool` 改为了 `hikari` ， `HikariCP` 在性能和并发方面确实表现不俗（号称最快的连接池）。
+`SpringBoot 2.0` 开始推 `HikariCP` ，将默认的数据库连接池从 `tomcat jdbc pool` 改为了 `hikari` ， `HikariCP` 在性能和并发方面确实表现不俗（号称最快的连接池）。
 
 如果你使用 `spring-boot-starter-jdbc` 或 `spring-boot-starter-data-jpa` ，会自动添加对 `HikariCP` 的依赖，也就是说此时使用 `HikariCP` 。当然你也可以强制使用其它的连接池技术，可以通过在 `application.properties` 或 `application.yml` 中配置 `spring.datasource.type` 指定。
 
