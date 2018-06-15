@@ -1,16 +1,10 @@
 server:
-  port: 8077
+  port: 8078
 
 spring:
   devtools:
     livereload:
       enabled: true
-  datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306?useSSL=false
-    username: root
-    password: 1234
-    maximum-pool-size: 50
   redis:
     port: 6379
     host: localhost
@@ -20,6 +14,16 @@ spring:
       uri: mongodb://localhost/test
       username: test
       password: 123456
+
+hikari:
+  primary:
+    jdbc-url: jdbc:mysql://localhost:3306/xu?useSSL=false
+    username: root
+    password: 1234
+  second:
+    jdbc-url: jdbc:mysql://localhost:3306/hua?useSSL=false
+    username: root
+    password: 1234
 
 management:
   endpoint:

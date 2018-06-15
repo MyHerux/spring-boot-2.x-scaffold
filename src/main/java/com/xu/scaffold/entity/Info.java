@@ -1,19 +1,13 @@
 package com.xu.scaffold.entity;
 
-import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
 @Data
-@Builder
-public class User {
+public class Info {
 
     @Id
     public Integer id;
 
-    public String name;
-
-    public String password;
-
-    public String otherInfo;
+    public String info;
 }

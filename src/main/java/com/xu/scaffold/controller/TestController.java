@@ -1,18 +1,18 @@
 package com.xu.scaffold.controller;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.xu.scaffold.common.bean.ExceptionType;
 import com.xu.scaffold.common.bean.Level;
 import com.xu.scaffold.common.exception.BusinessException;
+import com.xu.scaffold.entity.Info;
 import com.xu.scaffold.entity.User;
+import com.xu.scaffold.repository.primary.UserMapper;
+import com.xu.scaffold.repository.second.InfoMapper;
 import com.xu.scaffold.service.UserRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +31,13 @@ public class TestController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserMapper userMapper;
+
+    @Autowired
+    private InfoMapper infoMapper;
+
 
     @GetMapping("/test")
     public String test() {
@@ -90,6 +97,18 @@ public class TestController {
         User user = User.builder().name("test").password("123").build();
         mongoTemplate.save(user);
         return mongoTemplate.findAll(User.class);
+    }
+
+    @ApiOperation(value = "测试 Mybatis")
+    @GetMapping("/test8")
+    public User test8(){
+       return userMapper.SelectUserById(1);
+    }
+
+    @ApiOperation(value = "测试 Mybatis")
+    @GetMapping("/test9")
+    public Info test9(){
+        return infoMapper.SelectInfoById(1);
     }
 
     private final static String test = "{\"input\":\"test\",\"input2\":\"test2\"}";
