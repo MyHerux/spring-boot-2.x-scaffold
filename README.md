@@ -1,4 +1,6 @@
-# Springboot-2.x
+# SpringBoot-2.x-scaffold
+
+SpringBoot2.x脚手架，适用于新项目init。
 
 ## Overview
 
@@ -7,6 +9,7 @@
 - Swagger 2.8
 - 统一异常处理
 - 数据库连接池：HikariCP
+- Mybatis
 - Redis
 - MongoDB
 
@@ -346,18 +349,48 @@
     因为已经默认使用 `HikariCP`，所以只需要在 yaml 中添加数据库配置即可：
 
     ```
-    driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://
     username:
     password:
     ```
 
-    [HikariCP配置详解]()
-
-
 - 配置详解
 
-    []()
+    [HikariCP配置详解+多数据源](https://blog.csdn.net/MyHerux/article/details/80730690)
+
+## Mybatis
+
+- 添加依赖
+
+    ```
+    <dependency>
+        <groupId>org.mybatis.spring.boot</groupId>
+        <artifactId>mybatis-spring-boot-starter</artifactId>
+        <version>1.3.2</version>
+    </dependency>
+    ```
+
+- 具体使用
+
+    ```
+    @Mapper
+    public interface UserMapper {
+
+        @Select("select * from user where id = #{id}")
+        User SelectUserById(@Param("id") int id);
+    }
+    ```
+
+    ```
+    @Autowired
+    private UserMapper userMapper;
+
+    @ApiOperation(value = "测试 Mybatis")
+    @GetMapping("/test8")
+    public User test8(){
+       return userMapper.SelectUserById(1);
+    }
+    ```
 
 ## Redis
 
