@@ -19,16 +19,17 @@ public class MyJob {
     private JobMetrics jobMetrics;
 
     @Async("main")
-    @Scheduled(fixedDelay = 1000)
+    @Scheduled(fixedDelay = 20000)
     public void doSomething() {
         count1++;
         jobMetrics.job1Counter.increment(5D);
         jobMetrics.map.put("x", Double.valueOf(count1));
         System.out.println("task1 count:" + count1);
+        log.error("xu error");
     }
 
     @Async
-    @Scheduled(fixedDelay = 10000)
+    @Scheduled(fixedDelay = 20000)
     public void doSomethingOther() {
         count2++;
         jobMetrics.job2Counter.increment();
